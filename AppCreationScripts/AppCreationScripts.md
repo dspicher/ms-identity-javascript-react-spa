@@ -5,16 +5,16 @@
 1. On Windows run PowerShell as **Administrator** and navigate to the root of the cloned directory
 1. In PowerShell run:
 
-  ```PowerShell
-    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-  ```
+```PowerShell
+  Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
 
 1. Run the script to create your Azure AD application and configure the code of the sample application accordingly.
 
-  ```PowerShell
-    cd .\AppCreationScripts
-    .\Configure.ps1 -TenantId "ENTER_TENANT_ID"
-  ```
+```PowerShell
+  cd .\AppCreationScripts
+  .\Configure.ps1 -TenantId "ENTER_TENANT_ID"
+```
 
 ## More details
 
@@ -23,6 +23,7 @@ This sample comes with two PowerShell scripts, which automate the creation of th
 These scripts are:
 
 - `Configure.ps1` which:
+
   - creates Azure AD applications and their related objects (permissions, dependencies, secrets),
   - changes the configuration files in the source code.
   - creates a summary file named `createdApps.html` in the folder from which you ran the script, and containing, for each Azure AD application it created:
@@ -36,21 +37,21 @@ The `Configure.ps1` will stop if it tries to create an Azure AD application whic
 
 ### Pre-requisites
 
-1. Open PowerShell (On Windows, press  `Windows-R` and type `PowerShell` in the search window)
+1. Open PowerShell (On Windows, press `Windows-R` and type `PowerShell` in the search window)
 1. Navigate to the root directory of the project.
 1. Until you change it, the default [Execution Policy](https:/go.microsoft.com/fwlink/?LinkID=135170) for scripts is usually `Restricted`. In order to run the PowerShell script you need to set the Execution Policy to `RemoteSigned`. You can set this just for the current PowerShell process by running the command:
 
-    ```PowerShell
-      Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-    ```
+   ```PowerShell
+     Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+   ```
 
 The scripts install the required PowerShell module (Microsoft.Graph.Applications) for the current user if needed. However, if you want to install if for all users on the machine, you can follow the steps below:
 
-  1. Open PowerShell as admin (On Windows, Search Powershell in the search bar, right click on it and select Run as administrator).
-  2. Type: `Install-Module Microsoft.Graph.Applications`
+1. Open PowerShell as admin (On Windows, Search Powershell in the search bar, right click on it and select Run as administrator).
+2. Type: `Install-Module Microsoft.Graph.Applications`
 
 ### Running the script
-  
+
 - Open the [Azure portal](https://portal.azure.com)
 - Select the Azure Active directory you are interested in (in the combo-box below your name on the top right of the browser window)
 - Find the "Active Directory" object in this tenant
