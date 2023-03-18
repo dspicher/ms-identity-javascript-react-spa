@@ -20,12 +20,12 @@ export const msalConfig = {
         cacheLocation: "sessionStorage", // This configures where your cache will be stored
         storeAuthStateInCookie: false, // Set this to "true" if you are having issues on IE11 or Edge
     },
-    system: {	
-        loggerOptions: {	
-            loggerCallback: (level, message, containsPii) => {	
-                if (containsPii) {		
-                    return;		
-                }		
+    system: {
+        loggerOptions: {
+            loggerCallback: (level, message, containsPii) => {
+                if (containsPii) {
+                    return;
+                }
                 switch (level) {
                     case LogLevel.Error:
                         console.error(message);
@@ -41,9 +41,9 @@ export const msalConfig = {
                         return;
                     default:
                         return;
-                }	
-            }	
-        }	
+                }
+            }
+        }
     }
 };
 
@@ -57,10 +57,15 @@ export const loginRequest = {
     scopes: ["User.Read"]
 };
 
+export const driveRequest = {
+    scopes: ["User.Read", "Files.ReadWrite.AppFolder"]
+};
+
 /**
  * Add here the scopes to request when obtaining an access token for MS Graph API. For more information, see:
  * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/resources-and-scopes.md
  */
 export const graphConfig = {
-    graphMeEndpoint: "https://graph.microsoft.com/v1.0/me" //e.g. https://graph.microsoft.com/v1.0/me
+    graphMeEndpoint: "https://graph.microsoft.com/v1.0/me",
+    graphListFilesEndpoint: "https://graph.microsoft.com/v1.0/me/drive/special/approot/children",
 };
