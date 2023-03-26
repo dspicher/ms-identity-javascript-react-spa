@@ -9,6 +9,7 @@ import { graphConfig } from "../authConfig";
 export const DbFileProvider = () => {
   const { instance, accounts } = useMsal();
   const [graphData, setGraphData] = useState(null);
+  const [fileId, setFileId] = useState("");
 
   function RequestFileData() {
     // Silently acquires an access token which is then attached to a request for MS Graph data
@@ -25,7 +26,10 @@ export const DbFileProvider = () => {
           .then((b) => b.filter((value) => value.name === "proofs.csv"))
           .then((arr) => arr[0])
           .then((item) => [item.id])
-          .then((id) => callMsGraphFileContent(response.accessToken, id))
+          .then((id) => {
+            setFileId(id[0]);
+            return callMsGraphFileContent(response.accessToken, id);
+          })
           .then(setGraphData);
       });
   }
@@ -33,7 +37,7 @@ export const DbFileProvider = () => {
   return (
     <>
       {graphData ? (
-        <FileListData graphData={graphData} />
+        <FileListData graphData={graphData} id={fileId} />
       ) : (
         <Button variant="secondary" onClick={RequestFileData}>
           Fetch from {accounts[0].name}'s OneDrive

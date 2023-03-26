@@ -38,3 +38,20 @@ export async function callMsGraphFileContent(accessToken, id) {
   const response = await fetch(`${graphConfig.graphFetchFileEndpoint}${id}/content`, options);
   return await response.text();
 }
+
+export async function callMsGraphUploadFile(accessToken, id, content) {
+  const headers = new Headers();
+  const bearer = `Bearer ${accessToken}`;
+
+  headers.append("Authorization", bearer);
+  headers.append("Content-Type", "text/plain")
+
+  const options = {
+    method: "PUT",
+    headers: headers,
+    body: content
+  };
+
+  const response = await fetch(`${graphConfig.graphFetchFileEndpoint}${id}/content`, options);
+  return await response.json();
+}
