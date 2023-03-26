@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/ms-identity-javascript-react-spa/build/static/css/main.a36ca0b3.css",
-    "main.js": "/ms-identity-javascript-react-spa/build/static/js/main.23a81fb7.js",
-    "index.html": "/ms-identity-javascript-react-spa/build/index.html",
-    "main.a36ca0b3.css.map": "/ms-identity-javascript-react-spa/build/static/css/main.a36ca0b3.css.map",
-    "main.23a81fb7.js.map": "/ms-identity-javascript-react-spa/build/static/js/main.23a81fb7.js.map"
+    "main.css": "/one-drive-sync/static/css/main.a36ca0b3.css",
+    "main.js": "/one-drive-sync/static/js/main.e22d6e29.js",
+    "index.html": "/one-drive-sync/index.html",
+    "main.a36ca0b3.css.map": "/one-drive-sync/static/css/main.a36ca0b3.css.map",
+    "main.e22d6e29.js.map": "/one-drive-sync/static/js/main.e22d6e29.js.map"
   },
   "entrypoints": [
     "static/css/main.a36ca0b3.css",
-    "static/js/main.23a81fb7.js"
+    "static/js/main.e22d6e29.js"
   ]
 }
