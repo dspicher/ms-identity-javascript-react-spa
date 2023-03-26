@@ -10,24 +10,6 @@ export const DbFileProvider = () => {
   const { instance, accounts } = useMsal();
   const [graphData, setGraphData] = useState(null);
 
-  function hasProofsFile() {
-    instance
-      .acquireTokenSilent({
-        ...driveRequest,
-        account: accounts[0],
-      })
-      .then((response) => {
-        callMsGraph(response.accessToken, graphConfig.graphListFilesEndpoint)
-          .then((graphData) => {
-            return graphData.value;
-          })
-          .then((b) => b.filter((value) => value.name === "proofs.csv"))
-          .then((arr) => {
-            return arr.length > 0;
-          });
-      });
-  }
-
   function RequestFileData() {
     // Silently acquires an access token which is then attached to a request for MS Graph data
     instance
@@ -38,7 +20,16 @@ export const DbFileProvider = () => {
       .then((response) => {
         return callMsGraphFileContent(response.accessToken);
       })
-      .then(setGraphData);
+      .then((text_body) => {
+        console.log(text_body);
+        if (!text_body.includes("itemNotFound")) {
+          setGraphData(text_body);
+        } else {
+          setGraphData(
+            "name,address,status\nJohn Doe,18L3eimfvS1t4DvNweJdv1s7KZUKkHRiGF,verified\nPeter Parker,16e4iyWU4Vj6GGvVgiXZDRZ7jQBfsU75jq,verified"
+          );
+        }
+      });
   }
 
   return (

@@ -67,8 +67,6 @@ export const driveRequest = {
  */
 export const graphConfig = {
   graphMeEndpoint: "https://graph.microsoft.com/v1.0/me",
-  graphListFilesEndpoint:
-    "https://graph.microsoft.com/v1.0/me/drive/special/approot/children",
-  graphFetchFileEndpoint:
-    "https://graph.microsoft.com/v1.0/me/drive/items/",
+  proofsFile:
+  "https://graph.microsoft.com/v1.0/me/drive/special/approot/children/proofs.csv/content",
 };

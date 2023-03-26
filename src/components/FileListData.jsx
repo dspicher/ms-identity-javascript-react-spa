@@ -12,7 +12,6 @@ import { Form, SubmitButton, TextInputField } from "react-bare-forms";
  * @param props
  */
 export const FileListData = (data) => {
-  console.log(data);
   const { instance, accounts } = useMsal();
   const myState = { name: "", address: "" };
   const [state, setState] = React.useState(myState);
@@ -58,9 +57,8 @@ export const FileListData = (data) => {
 
         <SubmitButton>Submit Form</SubmitButton>
       </Form>
-      <Button variant="secondary" onClick={SyncToOneDrive}>
-        Sync to OneDrive
-      </Button>
+      <br></br>
+      <Button onClick={SyncToOneDrive}>Sync to OneDrive</Button>
     </div>
   );
 };

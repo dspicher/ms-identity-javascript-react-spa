@@ -35,7 +35,7 @@ export async function callMsGraphFileContent(accessToken) {
     headers: headers,
   };
 
-  const response = await fetch("https://graph.microsoft.com/v1.0/me/drive/special/approot/children/proofs.csv/content", options);
+  const response = await fetch(graphConfig.proofsFile, options);
   return await response.text();
 }
 
@@ -52,6 +52,6 @@ export async function callMsGraphUploadFile(accessToken, content) {
     body: content
   };
 
-  const response = await fetch("https://graph.microsoft.com/v1.0/me/drive/special/approot/children/proofs.csv/content", options);
+  const response = await fetch(graphConfig.proofsFile, options);
   return await response.json();
 }
