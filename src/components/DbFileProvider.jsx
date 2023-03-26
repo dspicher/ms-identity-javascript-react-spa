@@ -9,7 +9,6 @@ import { graphConfig } from "../authConfig";
 export const DbFileProvider = () => {
   const { instance, accounts } = useMsal();
   const [graphData, setGraphData] = useState(null);
-  const [fileId, setFileId] = useState("");
 
   function hasProofsFile() {
     instance
@@ -37,23 +36,15 @@ export const DbFileProvider = () => {
         account: accounts[0],
       })
       .then((response) => {
-        callMsGraph(response.accessToken, graphConfig.graphListFilesEndpoint)
-          .then((graphData) => {
-            return graphData.value;
-          })
-          .then((b) => b.filter((value) => value.name === "proofs.csv")[0].id)
-          .then((id) => {
-            setFileId(id);
-            return callMsGraphFileContent(response.accessToken, id);
-          })
-          .then(setGraphData);
-      });
+        return callMsGraphFileContent(response.accessToken);
+      })
+      .then(setGraphData);
   }
 
   return (
     <>
       {graphData ? (
-        <FileListData graphData={graphData} id={fileId} />
+        <FileListData graphData={graphData} />
       ) : (
         <div>
           If this is the first time you are using this, a "proofs.csv" file with

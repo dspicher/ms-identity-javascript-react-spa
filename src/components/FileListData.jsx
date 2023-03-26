@@ -24,9 +24,7 @@ export const FileListData = (data) => {
         account: accounts[0],
       })
       .then((response) => {
-        callMsGraphUploadFile(response.accessToken, data.id, CSVstate).then(
-          console.log
-        );
+        callMsGraphUploadFile(response.accessToken, CSVstate).then(console.log);
       });
   }
 
