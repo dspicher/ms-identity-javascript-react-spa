@@ -50,6 +50,11 @@ export const DbFileProvider = () => {
           <Button variant="secondary" onClick={RequestFileData}>
             Get data from {accounts[0].name}'s OneDrive
           </Button>
+          <br></br>
+          <br></br>
+          <a href="https://github.com/dspicher/ms-identity-javascript-react-spa">
+            Code
+          </a>
         </div>
       )}
     </>

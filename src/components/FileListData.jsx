@@ -32,7 +32,7 @@ export const FileListData = (data) => {
       <div id="filelist-div">
         <pre>{CSVstate}</pre>
       </div>
-      New entry:
+      New proof:
       <Form
         state={state}
         context={setState}
