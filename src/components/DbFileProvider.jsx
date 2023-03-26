@@ -2,7 +2,7 @@ import { useMsal } from "@azure/msal-react";
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { driveRequest } from "../authConfig";
-import { callMsGraph } from "../graph";
+import { callMsGraph, callMsGraphFileContent } from "../graph";
 import { FileListData } from "./FileListData";
 import { graphConfig } from "../authConfig";
 
@@ -18,14 +18,15 @@ export const DbFileProvider = () => {
         account: accounts[0],
       })
       .then((response) => {
-        callMsGraph(
-          response.accessToken,
-          graphConfig.graphListFilesEndpoint
-        ).then((graphData) =>
-          graphData.value.filter(
-            (value) => value.name === "2023_03_signature_proofs.xlsx"
-          )
-        );
+        callMsGraph(response.accessToken, graphConfig.graphListFilesEndpoint)
+          .then((graphData) => {
+            return graphData.value;
+          })
+          .then((b) => b.filter((value) => value.name === "proofs.csv"))
+          .then((arr) => arr[0])
+          .then((item) => [item.id])
+          .then((id) => callMsGraphFileContent(response.accessToken, id))
+          .then(setGraphData);
       });
   }
 
