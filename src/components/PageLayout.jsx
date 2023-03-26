@@ -21,7 +21,7 @@ export const PageLayout = (props) => {
     <>
       <Navbar bg="primary" variant="dark" className="navbarStyle">
         <a className="navbar-brand" href="/">
-          Microsoft Identity Platform
+          OneDrive Sync Demo
         </a>
         <div className="collapse navbar-collapse justify-content-end">
           {isAuthenticated ? <SignOutButton /> : <SignInButton />}
@@ -29,8 +29,7 @@ export const PageLayout = (props) => {
       </Navbar>
       <h5>
         <center>
-          Welcome to the Microsoft Authentication Library For Javascript - React
-          Quickstart
+          This App demonstrates using Microsoft 365 OneDrive as a backend
         </center>
       </h5>
       <br />

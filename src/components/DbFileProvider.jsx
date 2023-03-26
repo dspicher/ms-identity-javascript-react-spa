@@ -11,6 +11,24 @@ export const DbFileProvider = () => {
   const [graphData, setGraphData] = useState(null);
   const [fileId, setFileId] = useState("");
 
+  function hasProofsFile() {
+    instance
+      .acquireTokenSilent({
+        ...driveRequest,
+        account: accounts[0],
+      })
+      .then((response) => {
+        callMsGraph(response.accessToken, graphConfig.graphListFilesEndpoint)
+          .then((graphData) => {
+            return graphData.value;
+          })
+          .then((b) => b.filter((value) => value.name === "proofs.csv"))
+          .then((arr) => {
+            return arr.length > 0;
+          });
+      });
+  }
+
   function RequestFileData() {
     // Silently acquires an access token which is then attached to a request for MS Graph data
     instance
@@ -23,11 +41,9 @@ export const DbFileProvider = () => {
           .then((graphData) => {
             return graphData.value;
           })
-          .then((b) => b.filter((value) => value.name === "proofs.csv"))
-          .then((arr) => arr[0])
-          .then((item) => [item.id])
+          .then((b) => b.filter((value) => value.name === "proofs.csv")[0].id)
           .then((id) => {
-            setFileId(id[0]);
+            setFileId(id);
             return callMsGraphFileContent(response.accessToken, id);
           })
           .then(setGraphData);
@@ -39,9 +55,20 @@ export const DbFileProvider = () => {
       {graphData ? (
         <FileListData graphData={graphData} id={fileId} />
       ) : (
-        <Button variant="secondary" onClick={RequestFileData}>
-          Fetch from {accounts[0].name}'s OneDrive
-        </Button>
+        <div>
+          If this is the first time you are using this, a "proofs.csv" file with
+          some minimal fake data will be generated on OneDrive. <br></br>
+          <br></br>
+          New data you generate will be synced there afterwards.
+          <br></br>
+          <br></br>
+          You can find the file in "My files -> Apps -> Sync Demo -> proofs.csv"
+          <br></br>
+          <br></br>
+          <Button variant="secondary" onClick={RequestFileData}>
+            Get data from {accounts[0].name}'s OneDrive
+          </Button>
+        </div>
       )}
     </>
   );
