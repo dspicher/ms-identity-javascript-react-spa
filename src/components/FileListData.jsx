@@ -55,7 +55,7 @@ export const FileListData = (data) => {
           hint="address"
         />
 
-        <SubmitButton>Submit Form</SubmitButton>
+        <SubmitButton>Add Proof</SubmitButton>
       </Form>
       <br></br>
       <Button onClick={SyncToOneDrive}>Sync to OneDrive</Button>

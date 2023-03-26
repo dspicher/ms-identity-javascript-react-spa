@@ -14,7 +14,7 @@ export const msalConfig = {
   auth: {
     clientId: "229bf579-2572-4bbf-aaa4-442329cc2692",
     authority: "https://login.microsoftonline.com/consumers",
-    redirectUri: "http://localhost:3000",
+    redirectUri: "https://dspicher.github.io/one-drive-sync/",
   },
   cache: {
     cacheLocation: "sessionStorage", // This configures where your cache will be stored
